@@ -10,9 +10,15 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-model = pickle.load(open("model.pkl","rb"))
-importance = json.load(open("importance.json"))
-metrics = json.load(open("metrics.json"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "model.pkl")
+importance_path = os.path.join(BASE_DIR, "importance.json")
+metrics_path = os.path.join(BASE_DIR, "metrics.json")
+
+model = pickle.load(open(model_path, "rb"))
+importance = json.load(open(importance_path))
+metrics = json.load(open(metrics_path))
 
 explainer = shap.TreeExplainer(model)
 
