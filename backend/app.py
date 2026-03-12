@@ -16,6 +16,10 @@ metrics = json.load(open("metrics.json"))
 
 explainer = shap.TreeExplainer(model)
 
+@app.route("/")
+def home():
+    return "API funcionando"
+
 @app.route("/predict", methods=["POST"])
 def predict():
 
